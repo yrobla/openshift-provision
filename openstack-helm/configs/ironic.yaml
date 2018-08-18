@@ -1,0 +1,14 @@
+conf:
+  ironic:
+    DEFAULT:
+      debug: true
+    conductor:
+      automated_clean: "false"
+    deploy:
+      shred_final_overwrite_with_zeros: "false"
+    dhcp:
+      dhcp_provider: "none"
+network:
+  pxe:
+    device: ironic-pxe
+    neutron_provider_network: ironic

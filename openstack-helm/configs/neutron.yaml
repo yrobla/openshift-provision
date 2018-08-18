@@ -1,0 +1,18 @@
+network:
+  backend:
+    - linuxbridge
+conf:
+  neutron:
+    DEFAULT:
+      l3_ha: false
+      dhcp_agents_per_network: 1
+      debug: true
+  
+manifests:
+  daemonset_l3_agent: false
+  daemonset_lb_agent: false
+  daemonset_metadata_agent: false
+  daemonset_ovs_agent: false
+  daemonset_sriov_agent: false
+  pod_rally_test: false
+  daemonset_dhcp_agent: false

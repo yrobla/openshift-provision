@@ -1,0 +1,11 @@
+storage: pvc
+conf:
+  glance:
+    DEFAULT:
+      enable_v1_api: true
+      enable_v2_registry: True
+manifests:
+  deployment_registry: true
+  ingress_registry: true
+  pdb_registry: true
+  service_ingress_registry: true

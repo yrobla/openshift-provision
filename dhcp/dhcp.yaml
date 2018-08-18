@@ -1,0 +1,27 @@
+config: |
+
+  authoritative;
+  ddns-update-style interim;
+  allow booting;
+  allow bootp;
+
+  set vendorclass = option vendor-class-identifier;
+  option rfc3442-classless-static-routes code 121 = array of unsigned integer 8;
+
+  subnet 192.168.23.0 netmask 255.255.255.0 {
+          option routers 192.168.23.1;
+          option rfc3442-classless-static-routes 24,172,30,155,192,168,23,1;
+          option broadcast-address 192.168.23.255;
+          option domain-name-servers 192.168.23.1;
+          range dynamic-bootp 192.168.23.3 192.168.23.200;
+          option subnet-mask 255.255.255.0;
+
+          default-lease-time 21600;
+          max-lease-time 43200;
+          if exists user-class and option user-class = "iPXE" {
+             filename "http://192.168.23.1:8080/boot.ipxe";
+          } else {
+              filename "undionly.kpxe";
+              next-server 192.168.23.1;
+          }
+  }
