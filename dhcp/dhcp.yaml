@@ -8,12 +8,16 @@ config: |
   set vendorclass = option vendor-class-identifier;
   option rfc3442-classless-static-routes code 121 = array of unsigned integer 8;
 
+  host test { hardware ethernet 24:6E:96:0E:C8:A0; }
+
   subnet 192.168.23.0 netmask 255.255.255.0 {
-          option routers 192.168.23.1;
+         option routers 192.168.23.1;
           option rfc3442-classless-static-routes 24,172,30,155,192,168,23,1;
           option broadcast-address 192.168.23.255;
           option domain-name-servers 192.168.23.1;
+          option domain-name "openstack.svc.cluster.public";
           range dynamic-bootp 192.168.23.3 192.168.23.200;
+          deny unknown-clients;
           option subnet-mask 255.255.255.0;
 
           default-lease-time 21600;
@@ -25,3 +29,4 @@ config: |
               next-server 192.168.23.1;
           }
   }
+
